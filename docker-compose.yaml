@@ -1,0 +1,27 @@
+services:
+  ubuntu:
+    container_name: ubuntu
+    image: test
+    privileged: true
+    ports:
+     - 2222:22
+     - 7681:7681
+
+  ubuntu2:
+    container_name: ubuntu2
+    image: test
+    privileged: true
+    ports:
+     - 2223:22
+     - 7682:7681
+
+networks:
+  diveinto.io:
+    name: diveinto.io
+    # Canonical bridge interface name
+    #
+    # The setting below provides a friendly name for the bridge interface
+    # as seen in the likes of the ip command.  Use at your own discretion
+    #
+    #driver_opts:
+    #  com.docker.network.bridge.name: "diveinto.io"
