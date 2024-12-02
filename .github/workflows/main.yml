@@ -23,33 +23,18 @@ jobs:
         uses: gittools/actions/gitversion/setup@v3.0.3
 
       - name: Determine Version
-        id: version_step # step id used as reference for output values
+        id: version_step
         uses: gittools/actions/gitversion/execute@v3.0.3
 
       - name: Display GitVersion outputs
         run: |
           echo "SemVer: ${{ steps.version_step.outputs.semVer }}"
 
-      - name: Create tag
-        uses: actions/github-script@v3
-        with:
-          script: |
-            github.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: "refs/tags/v${{ steps.version_step.outputs.semVer }}",
-              sha: context.sha
-            })
-
       - name: Build
         working-directory: .
         run:
-          docker build -t tmp  .
-
-      - name: Tag
-        run:
-          docker tag -t tmp  .
+          docker build -t ghcr.io/eloiblt/ubuntu-custom-image:${{ steps.version_step.outputs.semVer }}  .
 
       - name: Push
         working-directory: .
-        run: docker push ghcr.io/eloiblt/ubuntu-custom-image
+        run: docker push ghcr.io/eloiblt/ubuntu-custom-image:${{ steps.version_step.outputs.semVer }}
