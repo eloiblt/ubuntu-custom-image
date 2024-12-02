@@ -33,8 +33,8 @@ jobs:
       - name: Build
         working-directory: .
         run:
-          docker build -t ghcr.io/eloiblt/ubuntu-custom-image:${{ steps.version_step.outputs.semVer }}  .
+          docker build -t ghcr.io/eloiblt/ubuntu-custom-image:${{ steps.version_step.outputs.semVer }}:latest  .
 
       - name: Push
         working-directory: .
-        run: docker push ghcr.io/eloiblt/ubuntu-custom-image:${{ steps.version_step.outputs.semVer }}
+        run: docker push ghcr.io/eloiblt/ubuntu-custom-image:${{ steps.version_step.outputs.semVer }}:latest
