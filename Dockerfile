@@ -11,9 +11,6 @@ RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerleve
 COPY ./assets/.p10k.zsh /root/.p10k.zsh
 COPY ./assets/.zshrc /root/.zshrc
 
-RUN mkdir -p /root/.cache/gitstatus
-COPY ./assets/gitstatusd-linux-x86_64 /root/.cache/gitstatus/gitstatusd-linux-x86_64
-
 COPY ./assets/start-services.sh /usr/local/bin/start-services.sh
 RUN chmod +x /usr/local/bin/start-services.sh
 
