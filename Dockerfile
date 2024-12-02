@@ -8,13 +8,13 @@ RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerleve
   && git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions \
   && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
-COPY ./.p10k.zsh /root/.p10k.zsh
-COPY ./.zshrc /root/.zshrc
+COPY ./assets/.p10k.zsh /root/.p10k.zsh
+COPY ./assets/.zshrc /root/.zshrc
 
 RUN mkdir -p /root/.cache/gitstatus
-COPY ./gitstatusd-linux-x86_64 /root/.cache/gitstatus/gitstatusd-linux-x86_64
+COPY ./assets/gitstatusd-linux-x86_64 /root/.cache/gitstatus/gitstatusd-linux-x86_64
 
-COPY ./start-services.sh /usr/local/bin/start-services.sh
+COPY ./assets/start-services.sh /usr/local/bin/start-services.sh
 RUN chmod +x /usr/local/bin/start-services.sh
 
 RUN echo 'root:root' | chpasswd

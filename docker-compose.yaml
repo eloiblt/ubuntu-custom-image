@@ -1,16 +1,14 @@
 services:
   ubuntu:
     container_name: ubuntu
-    image: test
-    privileged: true
+    image: ghcr.io/eloiblt/ubuntu-custom-image
     ports:
      - 2222:22
      - 7681:7681
 
   ubuntu2:
     container_name: ubuntu2
-    image: test
-    privileged: true
+    image: ghcr.io/eloiblt/ubuntu-custom-image
     ports:
      - 2223:22
      - 7682:7681
