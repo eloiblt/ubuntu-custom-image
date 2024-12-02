@@ -21,4 +21,4 @@ jobs:
 
       - name: Push
         working-directory: .
-        run: docker compose push
+        run: docker push eloiblt/ubuntu-custom-image
