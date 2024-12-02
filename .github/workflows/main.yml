@@ -19,22 +19,11 @@ jobs:
       - name: Login to GitHub Container Registry
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login https://ghcr.io -u eloiblt --password-stdin
 
-      - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v3.0.3
-
-      - name: Determine Version
-        id: version_step
-        uses: gittools/actions/gitversion/execute@v3.0.3
-
-      - name: Display GitVersion outputs
-        run: |
-          echo "SemVer: ${{ steps.version_step.outputs.semVer }}"
-
       - name: Build
         working-directory: .
         run:
-          docker build -t ghcr.io/eloiblt/ubuntu-custom-image:${{ steps.version_step.outputs.semVer }}:latest  .
+          docker build -t ghcr.io/eloiblt/ubuntu-custom-image .
 
       - name: Push
         working-directory: .
-        run: docker push ghcr.io/eloiblt/ubuntu-custom-image:${{ steps.version_step.outputs.semVer }}:latest
+        run: docker push ghcr.io/eloiblt/ubuntu-custom-image
