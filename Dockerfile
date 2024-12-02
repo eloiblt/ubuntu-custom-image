@@ -4,9 +4,9 @@ RUN apt update && apt install -y ttyd openssh-server zsh speedtest-cli ipcalc op
 RUN chsh -s $(which zsh)
 SHELL ["/bin/zsh", "-c"]
 
-RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/powerlevel10k \
-  && git clone https://github.com/zsh-users/zsh-autosuggestions /root/.zsh/zsh-autosuggestions \
-  && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /root/.zsh/zsh-syntax-highlighting
+RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k \
+  && git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions \
+  && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
 COPY ./.p10k.zsh /root/.p10k.zsh
 COPY ./.zshrc /root/.zshrc
@@ -23,5 +23,7 @@ RUN mkdir /var/run/sshd \
     && sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
 
 EXPOSE 22 7681
+
+WORKDIR /root
 
 ENTRYPOINT ["/usr/local/bin/start-services.sh"]
