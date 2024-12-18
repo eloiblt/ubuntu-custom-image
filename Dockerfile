@@ -4,12 +4,12 @@ RUN apt update && apt install -y ttyd openssh-server zsh speedtest-cli ipcalc op
 RUN chsh -s $(which zsh)
 SHELL ["/bin/zsh", "-c"]
 
-RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k \
-  && git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions \
+RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
+RUN git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions \
   && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
-COPY ./assets/.p10k.zsh /root/.p10k.zsh
 COPY ./assets/.zshrc /root/.zshrc
+COPY ./assets/starship.toml /root/.config/starship.toml
 
 COPY ./assets/start-services.sh /usr/local/bin/start-services.sh
 RUN chmod +x /usr/local/bin/start-services.sh

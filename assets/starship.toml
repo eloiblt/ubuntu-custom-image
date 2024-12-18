@@ -1,0 +1,41 @@
+add_newline = false
+
+[line_break]
+disabled = true
+
+[package]
+disabled = true
+
+[directory]
+fish_style_pwd_dir_length = 3
+truncation_length = 2
+
+[hostname]
+disabled = true
+
+[username]
+disabled = true
+
+[git_branch]
+disabled = true
+
+[git_commit]
+disabled = true
+
+[git_state]
+disabled = true
+
+[git_metrics]
+disabled = true
+
+[git_status]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[java]
+disabled = true
+
+[container]
+disabled = true
